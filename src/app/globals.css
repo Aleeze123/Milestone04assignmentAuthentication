@@ -2,26 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes borderAnimation {
+  0% {
+      background-position: 0% 50%;
+  }
+  100% {
+      background-position: 100% 50%;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.animated-border {
+  position: relative;
+  padding: 2px; /* To create space for the border */
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.animated-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  border-radius: 8px; /* Match this with the parent div */
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5));
+  background-size: 400% 400%;
+  animation: borderAnimation 5s ease infinite;
 }
