@@ -8,7 +8,7 @@ interface SendEmailParams {
     userId: string;
 }
 
-export const sendEmail = async ({ email, emailType, userId }: SendEmailParams) => {
+export const sendEmail = async ({ email, emailType, userId }: SendEmailParams): Promise<any> => {
     try {
         const hashedToken = await bcryptjs.hash(userId.toString(), 10);
 
@@ -45,6 +45,10 @@ export const sendEmail = async ({ email, emailType, userId }: SendEmailParams) =
         return mailResponse;
 
     } catch (error) {
-        throw new Error(error instanceof Error ? error.message : "An error occurred");
+        if (error instanceof Error) {
+            throw new Error(error.message);
+        } else {
+            throw new Error("An error occurred");
+        }
     }
 };
