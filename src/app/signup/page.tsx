@@ -35,7 +35,7 @@ export default function SignupPage() {
 
     return (
         <div
-            className="flex flex-col items-center justify-center min-h-screen py-6"
+            className="flex flex-col items-center justify-center min-h-screen py-6 px-4"
             style={{
                 backgroundImage: 'url("https://i.pinimg.com/564x/5f/bc/34/5fbc34ed1a292b5f8a064a38328ed112.jpg")',
                 backgroundSize: "cover",
@@ -43,7 +43,7 @@ export default function SignupPage() {
                 backdropFilter: "blur(5px)",
             }}
         >
-            <div className="bg-transparent bg-opacity-80 p-6 rounded-lg shadow-lg w-96">
+            <div className="bg-transparent bg-opacity-80 p-6 rounded-lg shadow-lg w-full max-w-md">
                 <h1 className="text-2xl font-semibold text-center mb-4">{loading ? "Processing..." : "Signup🔐"}</h1>
                 <hr className="mb-4" />
                 
