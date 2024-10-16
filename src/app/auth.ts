@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getSession, login,log} from 'next-auth/react';
+import { getSession} from 'next-auth/react';
 
 export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     switch (req.method) {
