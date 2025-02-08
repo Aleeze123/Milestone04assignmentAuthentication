@@ -37,44 +37,45 @@ export default function SignupPage() {
         <div
             className="flex flex-col items-center justify-center min-h-screen py-6 px-4"
             style={{
-                backgroundImage: 'url("https://i.pinimg.com/564x/5f/bc/34/5fbc34ed1a292b5f8a064a38328ed112.jpg")',
-                backgroundSize: "cover",
-                backgroundPosition: "center",
+                backgroundColor: "black", 
                 backdropFilter: "blur(5px)",
             }}
         >
-            <div className="bg-transparent bg-opacity-80 p-6 rounded-lg shadow-lg w-full max-w-md">
-                <h1 className="text-2xl font-semibold text-center mb-4">{loading ? "Processing..." : "Signup🔐"}</h1>
-                <hr className="mb-4" />
+            <div className="bg-black p-6 rounded-lg shadow-xl w-full max-w-md border-2 border-white"> {/* Updated border and shadow */}
+                <h1 className="text-2xl font-semibold text-white text-center mb-4">{loading ? "Processing..." : "Signup🔐"}</h1>
+                <hr className="mb-4" style={{ borderColor: "white" }} />
                 
-                <label htmlFor="username" className="block mb-1 font-medium">Name</label>
+                <label htmlFor="username" className="block mb-1 font-medium text-white">Name</label>
                 <input
-                    className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-blue-500"
+                    className="p-2 border border-white rounded-lg mb-4 focus:outline-none focus:border-blue-500"
                     id="username"
                     type="text"
                     value={user.username}
                     onChange={(e) => setUser({ ...user, username: e.target.value })}
                     placeholder="Enter your username"
+                    style={{ backgroundColor: "#333" }} 
                 />
                 
-                <label htmlFor="email" className="block mb-1 font-medium">Email</label>
+                <label htmlFor="email" className="block mb-1 font-medium text-white">Email</label>
                 <input
-                    className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-blue-500"
+                    className="p-2 border border-white rounded-lg mb-4 focus:outline-none focus:border-blue-500"
                     id="email"
                     type="text"
                     value={user.email}
                     onChange={(e) => setUser({ ...user, email: e.target.value })}
-                    placeholder="Enter your email"
+                    placeholder="Enter your email"//alizey649@gmail.com
+                    style={{ backgroundColor: "#333" }}
                 />
                 
-                <label htmlFor="password" className="block mb-1 font-medium">Password</label>
+                <label htmlFor="password" className="block mb-1 font-medium text-white">Password</label>
                 <input
-                    className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-blue-500"
+                    className="p-2 border border-white rounded-lg mb-4 focus:outline-none focus:border-blue-500"
                     id="password"
                     type="password"
                     value={user.password}
                     onChange={(e) => setUser({ ...user, password: e.target.value })}
-                    placeholder="Enter your password"
+                    placeholder="Enter your password" //aleeza123
+                    style={{ backgroundColor: "#333" }} 
                 />
                 
                 <button
@@ -85,7 +86,7 @@ export default function SignupPage() {
                     {buttonDisabled ? "Fill all fields" : "Signup"}
                 </button>
                 
-                <p className="text-center">
+                <p className="text-center text-white">
                     Already have an account?
                     <Link href="/login" className="mx-2 text-blue-800 underline">Login</Link>
                 </p>
