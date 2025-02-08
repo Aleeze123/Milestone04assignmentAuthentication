@@ -14,20 +14,17 @@ export default function ProfilePage() {
         <div
             className="flex items-center justify-center min-h-screen p-4"
             style={{
-               backgroundImage: 'url("https://i.pinimg.com/564x/5f/bc/34/5fbc34ed1a292b5f8a064a38328ed112.jpg")',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
+                backgroundColor: 'black',  
+                color: 'white',  
             }}
         >
-            <div className="bg-transparent p-8 rounded-lg shadow-md w-full max-w-md text-center">
-                <h1 className="text-2xl mb-4 text-gray-800">Welcome!</h1>
-                <p className="text-gray-600 mb-2">You are now logged in </p>
-                <p className="text-gray-800 font-semibold"></p>
-                <div className="mt-6 flex justify-around">
-                    
+            <div className="bg-white p-8 rounded-lg shadow-2xl max-w-md w-full text-center">
+                <h1 className="text-4xl font-semibold text-gray-900 mb-4">Welcome back!</h1>
+                <p className="text-lg text-gray-700 mb-6">You are now logged in</p>
+                <div className="mt-6">
                     <button
                         onClick={handleLogout}
-                        className="p-2 border border-gray-300 rounded-lg bg-red-600 text-white focus:outline-none"
+                        className="w-full p-3 text-white rounded-lg bg-red-600 hover:bg-red-700 focus:outline-none transition duration-300 ease-in-out transform hover:scale-105 shadow-lg"
                     >
                         Logout
                     </button>
