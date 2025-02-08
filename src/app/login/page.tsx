@@ -18,6 +18,7 @@ export default function LoginPage() {
     });
     const [buttonDisabled, setButtonDisabled] = React.useState(true);
     const [loading, setLoading] = React.useState(false);
+    const [error, setError] = React.useState<string | null>(null); 
 
     const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -29,7 +30,14 @@ export default function LoginPage() {
             router.push("/profile");
         } catch (error: any) {
             console.log("Login failed", error.message);
-            toast.error(error.message);
+
+            // Check if the error is about the user already existing
+            if (error.response && error.response.data.message === "User already exists") {
+                setError("This email is already registered. Please try logging in.");
+            } else {
+                setError(error.message || "An error occurred");
+            }
+            toast.error(error.message || "Login failed");
         } finally {
             setLoading(false);
         }
@@ -43,20 +51,23 @@ export default function LoginPage() {
         <div
             className="flex flex-col justify-center items-center min-h-screen text-white"
             style={{
-                backgroundImage: 'url("https://i.pinimg.com/564x/5f/bc/34/5fbc34ed1a292b5f8a064a38328ed112.jpg")',
+                backgroundColor: "black", 
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
+                backdropFilter: "blur(5px)", 
             }}
         >
-            <div className="p-8 w-full max-w-md rounded-lg shadow-lg bg-transparent bg-opacity-90 text-black">
-             
+            <div className="p-8 w-full max-w-md rounded-lg shadow-xl bg-black text-white border-2 border-white">
                 <h1 className="text-3xl font-semibold text-center mb-4">Login🔐</h1>
-                <hr className="mb-4" />
+                <hr className="mb-4" style={{ borderColor: "white" }} />
+
+                {error && <div className="text-red-500 text-center mb-4">{error}</div>}
+
                 <form className="flex flex-col" onSubmit={onLogin}>
                     <div className="my-2">
                         <label htmlFor="email" className="block mb-1 font-medium">Email Address</label>
                         <input
-                            className="border mx-2 border-gray-400 rounded p-3 text-black focus:outline-none focus:border-blue-500"
+                            className="border mx-2 border-white rounded p-3 text-black focus:outline-none focus:border-blue-500"
                             type="email"
                             name="email"
                             id="email"
@@ -64,13 +75,14 @@ export default function LoginPage() {
                             onChange={(e) => setUser({ ...user, email: e.target.value })}
                             required
                             placeholder="Email"
+                            style={{ backgroundColor: "#333" }}
                         />
                     </div>
 
                     <div className="my-2">
                         <label htmlFor="password" className="block mb-1 font-medium">Password</label>
                         <input
-                            className="border mx-2 border-gray-400 rounded p-3 text-black focus:outline-none focus:border-blue-500"
+                            className="border mx-2 border-white rounded p-3 text-black focus:outline-none focus:border-blue-500"
                             type="password"
                             name="password"
                             id="password"
@@ -78,23 +90,24 @@ export default function LoginPage() {
                             onChange={(e) => setUser({ ...user, password: e.target.value })}
                             required
                             placeholder="Password"
+                            style={{ backgroundColor: "#333" }}
                         />
                     </div>
 
                     <button
                         type="submit"
-                        className={`mt-4 bg-blue-600 hover:bg-blue-700 text-white rounded p-2 transition duration-200 ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+                        className={`mt-4 text-white rounded-lg p-3 transition duration-300 ease-in-out transform ${loading ? "opacity-50 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"}`}
                         disabled={buttonDisabled || loading}
                     >
                         {loading ? "Logging in..." : "Login"}
                     </button>
                 </form>
-                <p className="my-3 text-center">
+
+                <p className="my-3 text-center text-white">
                     Don't have an account?
                     <Link href="/signup" className="mx-2 text-blue-800 underline">Register</Link>
                 </p>
             </div>
         </div>
-     
     );
 }
